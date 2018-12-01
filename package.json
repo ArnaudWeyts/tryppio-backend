@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/ArnaudWeyts/tryppio-backend/issues"
   },
-  "homepage": "https://github.com/ArnaudWeyts/tryppio-backend#readme"
+  "homepage": "https://github.com/ArnaudWeyts/tryppio-backend#readme",
+  "dependencies": {
+    "apollo-server": "^2.2.5",
+    "mongoose": "^5.3.14"
+  }
 }
