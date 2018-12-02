@@ -37,7 +37,8 @@ userSchema.set('toObject', { virtuals: true });
  * from objects to strings, numbers, and booleans.
  */
 userSchema.method('toGraph', function toGraph(this: any) {
-  return JSON.parse(JSON.stringify(this));
+  const json = JSON.parse(JSON.stringify(this));
+  return { id: json._id, ...json };
 });
 
 /**
