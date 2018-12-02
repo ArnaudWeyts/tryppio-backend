@@ -25,7 +25,9 @@
   "homepage": "https://github.com/ArnaudWeyts/tryppio-backend#readme",
   "dependencies": {
     "apollo-server": "^2.2.5",
+    "bcrypt": "^3.0.2",
     "graphql": "^14.0.2",
+    "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.14"
   },
   "devDependencies": {
