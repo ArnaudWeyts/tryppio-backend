@@ -1,0 +1,34 @@
+type User {
+  id: ID!
+  email: String!
+  password: String!
+  userName: String!
+  firstName: String
+  lastName: String
+}
+
+input UserFilterInput {
+  limit: Int
+}
+
+extend type Query {
+  users(filter: UserFilterInput): [User]
+  user(id: String!): User
+}
+
+# We do not need to check if any of the input parameters
+# exist with a "!" character. This is because mongoose will
+# do this for us, and it also means we can use the same
+# input on both the "addUser" and "editUser" methods.
+input UserInput {
+  email: String
+  password: String
+  firstName: String
+  lastName: String
+}
+
+extend type Mutation {
+  addUser(input: UserInput!): User
+  editUser(id: String!, input: UserInput!): User
+  deleteUser(id: String!): User
+}

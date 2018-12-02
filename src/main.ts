@@ -1,6 +1,9 @@
 import { ApolloServer, makeExecutableSchema } from 'apollo-server';
 import * as mongoose from 'mongoose';
 
+import * as userSchema from './Domain/Users/user.schema.gql';
+import * as rootSchema from './Domain/root.schema.gql';
+
 /**
  * Connect to the mongodb database using the mongoose library.
  */
@@ -16,23 +19,11 @@ mongoose.connect(
 );
 
 /**
- * We must define a root type so that our server knows where to
- * look when we query the server i.e. in the "root" types.
- */
-const rootTypeDefs = `
-  type Query
-  type Mutation
-  schema {
-    query: Query
-    mutation: Mutation
-  }
-`;
-
-/**
  * Declare the schema which the will hold our GraphQL types and
  * resolvers.
  */
 const schema = makeExecutableSchema({
+  typeDefs: [rootSchema, userSchema],
   typeDefs: [rootTypeDefs]
 });
 
@@ -43,7 +34,7 @@ const server = new ApolloServer({
   schema,
   formatError(error) {
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-      // logging the errors can help in development
+      // log errors in development
       console.log(error);
     }
     return error;
