@@ -6,8 +6,13 @@ import * as mongoose from 'mongoose';
  */
 mongoose.connect(
   // you can use 'mongodb://localhost/graphql-demo' in development
-  process.env.MONGODB_URI || 'mongodb://localhost',
-  { useNewUrlParser: true }
+  `mongodb://${process.env.MONGODB_DB}`,
+  {
+    user: process.env.MONGODB_USER,
+    pass: process.env.MONGODB_PASS,
+    useNewUrlParser: true,
+    useCreateIndex: true
+  }
 );
 
 /**
