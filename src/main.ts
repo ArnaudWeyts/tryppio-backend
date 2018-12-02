@@ -1,9 +1,9 @@
 import { ApolloServer, makeExecutableSchema } from 'apollo-server';
 import * as mongoose from 'mongoose';
 
-import * as userSchema from './Domain/Users/user.schema.gql';
+import * as userSchema from './Domain/Users/schema.gql';
 import * as rootSchema from './Domain/root.schema.gql';
-import userResolvers from './Domain/Users/user.resolvers';
+import userResolvers from './Domain/Users/resolvers';
 
 /**
  * Connect to the mongodb database using the mongoose library.

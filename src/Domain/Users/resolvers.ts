@@ -1,4 +1,4 @@
-import User from './user.model';
+import User from './model';
 
 /**
  * Exporting our resolver functions. Note that:
