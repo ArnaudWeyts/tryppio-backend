@@ -13,7 +13,14 @@ module.exports = {
       loader: 'ts-loader'
     });
 
+    config.module.rules.push({
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      loader: 'graphql-tag/loader'
+    });
+
     config.plugins.push(new Dotenv());
+
     return config;
   }
 };
