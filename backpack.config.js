@@ -1,3 +1,5 @@
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
   webpack: (config, options, webpack) => {
     config.entry.main = ['./src/main.ts'];
@@ -11,6 +13,7 @@ module.exports = {
       loader: 'ts-loader'
     });
 
+    config.plugins.push(new Dotenv());
     return config;
   }
 };
