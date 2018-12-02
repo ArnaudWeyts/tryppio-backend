@@ -1,5 +1,6 @@
 import { ApolloServer, makeExecutableSchema } from 'apollo-server';
 import * as mongoose from 'mongoose';
+import * as jwt from 'jsonwebtoken';
 
 import * as userSchema from './Domain/Users/schema.gql';
 import * as rootSchema from './Domain/root.schema.gql';
@@ -39,6 +40,14 @@ const server = new ApolloServer({
       console.log(error);
     }
     return error;
+  },
+  async context({ req }) {
+    const token = req && req.headers && req.headers.authorization;
+    if (token) {
+      const data: any = jwt.verify(token, process.env.JWT_SECRET);
+      const user = data.id ? await User.findById(data.id) : null;
+      return { user };
+    }
   }
 });
 

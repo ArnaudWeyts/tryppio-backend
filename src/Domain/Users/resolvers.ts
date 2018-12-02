@@ -33,6 +33,15 @@ export default {
     deleteUser: async (_, { id }) => {
       const user: any = await User.findByIdAndRemove(id);
       return user ? user.toGraph() : null;
+    },
+    loginUser: async (_, { email, password }) => {
+      const user: any = await User.findOne({ email });
+      const match: boolean = await user.comparePassword(password);
+      if (match) {
+        return jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+      }
+      throw new Error('Not Authorized.');
+    }
     }
   }
 };

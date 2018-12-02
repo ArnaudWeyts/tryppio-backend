@@ -1,4 +1,6 @@
 import * as mongoose from 'mongoose';
+import * as bcrypt from 'bcrypt';
+const saltRounds = 10;
 
 /**
  * Here is the our user schema which will be used to
@@ -39,6 +41,18 @@ userSchema.set('toObject', { virtuals: true });
 userSchema.method('toGraph', function toGraph(this: any) {
   const json = JSON.parse(JSON.stringify(this));
   return { id: json._id, ...json };
+});
+
+userSchema.pre('save', function save(this: any, next) {
+  this.password = bcrypt.hashSync(this.password, saltRounds);
+  next();
+});
+
+userSchema.method('comparePassword', function comparePassword(
+  this: any,
+  candidate: string
+) {
+  return bcrypt.compare(candidate, this.password);
 });
 
 /**
