@@ -3,6 +3,7 @@ import * as mongoose from 'mongoose';
 
 import * as userSchema from './Domain/Users/user.schema.gql';
 import * as rootSchema from './Domain/root.schema.gql';
+import userResolvers from './Domain/Users/user.resolvers';
 
 /**
  * Connect to the mongodb database using the mongoose library.
@@ -24,7 +25,7 @@ mongoose.connect(
  */
 const schema = makeExecutableSchema({
   typeDefs: [rootSchema, userSchema],
-  typeDefs: [rootTypeDefs]
+  resolvers: userResolvers
 });
 
 /**
