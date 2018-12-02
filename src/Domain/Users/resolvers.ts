@@ -1,4 +1,7 @@
+import * as jwt from 'jsonwebtoken';
+
 import User from './model';
+import Trip from '../Trips/model';
 
 /**
  * Exporting our resolver functions. Note that:
@@ -42,6 +45,14 @@ export default {
       }
       throw new Error('Not Authorized.');
     }
+  },
+  User: {
+    async trips(user: { id: string }) {
+      if (user.id) {
+        const trips: any = await Trip.find({ user: user.id });
+        return trips.map(trip => trip.toGraph());
+      }
+      return null;
     }
   }
 };

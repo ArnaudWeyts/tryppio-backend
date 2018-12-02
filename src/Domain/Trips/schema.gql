@@ -1,0 +1,17 @@
+type Trip {
+  id: ID!
+  destination: String!
+  user: User
+}
+
+extend type Query {
+  trips: [Trip]
+}
+
+input TripInput {
+  destination: String
+}
+
+extend type Mutation {
+  addTrip(input: TripInput!): Trip
+}

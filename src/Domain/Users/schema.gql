@@ -4,6 +4,7 @@ type User {
   userName: String!
   firstName: String
   lastName: String
+  trips: [Trip]
 }
 
 input UserFilterInput {

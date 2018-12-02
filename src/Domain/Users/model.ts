@@ -25,7 +25,8 @@ const userSchema = new mongoose.Schema({
   },
   lastName: {
     type: String
-  }
+  },
+  trips: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Trip' }]
 });
 
 /**
