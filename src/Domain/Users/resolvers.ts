@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 
 import User from './model';
-import Trip from '../Trips/model';
+import { Trip } from '../Trips';
 
 /**
  * Exporting our resolver functions. Note that:
